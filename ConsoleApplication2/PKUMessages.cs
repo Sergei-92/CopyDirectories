@@ -25,7 +25,7 @@ namespace ConsoleApplication2
             }
 
             int year = Int32.Parse(param[0]); // Год когда была создана папка
-            int coutn = 0;
+            //int coutn = 0; //Переменная для подсчета количества папок
             String logError = null;
             List<String> deleteDirectories = new List<String>(); //Коллекция для хранения папок, которые будут удалены после копирования
 
