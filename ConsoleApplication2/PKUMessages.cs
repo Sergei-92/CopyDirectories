@@ -84,9 +84,12 @@ namespace ConsoleApplication2
                             {
                                 Directory.CreateDirectory(param[3]);
                             }
-                       
-                            ZipFile.CreateFromDirectory(param[2], param[3] + "\\archiv_" + DateTime.Now.ToString("dd") + "_" + DateTime.Now.ToString("MM") + "_" +
-                                                        DateTime.Now.ToString("HH") + "_" + DateTime.Now.ToString("mm") + "_" + DateTime.Now.ToString("ss") + "_"+year.ToString()+".zip");
+                            else
+                            {
+                                ZipFile.CreateFromDirectory(param[2], param[3] + "\\archiv_" + DateTime.Now.ToString("dd") + "_" + DateTime.Now.ToString("MM") + "_" +
+                                    DateTime.Now.ToString("HH") + "_" + DateTime.Now.ToString("mm") + "_" + DateTime.Now.ToString("ss") + "_" + year.ToString() + ".zip");
+                            }
+
 
                             //Записывем информацию о удалении каталогов в log файл
                             File.AppendAllText("log.txt", DateTime.Now + " " + logError);
