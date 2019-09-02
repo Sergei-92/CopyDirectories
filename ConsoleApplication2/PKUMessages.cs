@@ -97,10 +97,15 @@ namespace ConsoleApplication2
                         }
                         catch (Exception)
                         {
-                            File.AppendAllText("log.txt", DateTime.Now + " Некоторые папки уже скопированы, удалите папки по пути: " + param[2]);
+                            File.AppendAllText("log.txt", DateTime.Now + " Некоторые папки уже скопированы, удалите папки по пути: " + param[2]+"\r\n");
                         }
                     }
-
+                    else
+                    {
+                        Console.WriteLine("Нет папок для копирования за "+param[0]);
+                        File.AppendAllText("log.txt", "Нет папок для копирования за " + param[0]+"\r\n");
+                        break;
+                    }
                     //coutn = coutn + 1;
                 }
             }
