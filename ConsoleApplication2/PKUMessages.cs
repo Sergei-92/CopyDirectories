@@ -27,7 +27,7 @@ namespace ConsoleApplication2
             int year = Int32.Parse(param[0]); // Год когда была создана папка
             //int coutn = 0; //Переменная для подсчета количества папок
             String logError = null;
-            List<String> deleteDirectories = new List<String>(); //Коллекция для хранения папок, которые будут удалены после копирования
+            //List<String> deleteDirectories = new List<String>(); //Коллекция для хранения папок, которые будут удалены после копирования
 
             //-------------------------------Для теста на 15 сервере-------------
             File.AppendAllText("log.txt", DateTime.Now + " Копирование из каталога:" + param[1] + "\r\n");
@@ -55,7 +55,7 @@ namespace ConsoleApplication2
                         {
 
                             Directory.CreateDirectory(dirPath.Replace(param[1], param[2]));
-                            deleteDirectories.Add(dirPath);
+                            //deleteDirectories.Add(dirPath);
 
 
                             //File.AppendAllText("log.txt", DateTime.Now+" Завершение программы. Не найдены каталоги, заданные условиями поиска в файле App.config\r\n");
@@ -71,10 +71,11 @@ namespace ConsoleApplication2
                             File.AppendAllText("log.txt", DateTime.Now + " " + logError);
 
                             //После копирования файлов, удаляем ненужные каталоги
-                            foreach (String deleteCatalog in deleteDirectories)
+                            foreach (String deleteCatalog in fileInDirectories)
                             {
+                                Console.WriteLine("Удаляю каталог " + deleteCatalog);
                                 Directory.Delete(deleteCatalog, true);
-                                logError = "Удалено " + deleteDirectories.Count + " каталога(ов)";
+                                logError = "Удалено " + fileInDirectories.Length + " каталога(ов)";
 
                             }
 
