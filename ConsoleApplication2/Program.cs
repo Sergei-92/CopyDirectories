@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 //Пространство имен для файла конфигурации
 using System.Configuration;
@@ -20,6 +20,15 @@ namespace ConsoleApplication2
         public static void  ClosePrgramm()
         {
             Process.GetCurrentProcess().Kill();
+        }
+
+        //Считываю параметры с ini файла
+
+        private static void configINI()
+        {
+            ReadINI read = new ReadINI(@"D:\1.ini");
+
+            String year = read.GetPrivateString("main", "year");
         }
 
       /*  private static void configFile()
@@ -81,10 +90,10 @@ namespace ConsoleApplication2
             String log = pathProgramm + @"\log.txt";
             File.Delete(log);
             File.AppendAllText("log.txt", DateTime.Now+" Запуск программы\r\n");
-            
 
-            configXML();
-            
+
+            //configXML();
+            configINI();
         }
 
 
