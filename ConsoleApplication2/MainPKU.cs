@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace ConsoleApplication2
 {
-    class Program
+    class MainPKU
     {
         //Метод для принудителного завершения программы
         public static void  ClosePrgramm()
@@ -26,9 +26,27 @@ namespace ConsoleApplication2
 
         private static void configINI()
         {
-            ReadINI read = new ReadINI(@"D:\1.ini");
+            ReadINI read = new ReadINI(Environment.CurrentDirectory+@"\Config.ini");
+            String[] param = new String[4];
 
-            String year = read.GetPrivateString("main", "year");
+            String year = read.GetPrivateString("messagePKU", "year");
+            param[0] = year;
+
+            String path_from = read.GetPrivateString("messagePKU", "path_from");
+            param[1] = path_from;
+
+            String path_to = read.GetPrivateString("messagePKU", "path_to");
+            param[2] = path_to;
+
+            String path_archive = read.GetPrivateString("messagePKU", "path_archive");
+            param[3] = path_archive;
+
+            Console.WriteLine("Считываение параметров из Config.ini : Успех");
+            File.AppendAllText("log.txt", DateTime.Now + " Считывание пареметров из Config.ini : Успех\r\n");
+
+            PKUMessages mqportal = new PKUMessages();
+            //Вызываем метод для копирования папок из mq_portal
+            mqportal.CopyFilesCatalogMQPortal(param);
         }
 
       /*  private static void configFile()

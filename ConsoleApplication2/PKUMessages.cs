@@ -16,12 +16,13 @@ namespace ConsoleApplication2
             // param[0] - Дата за которую копировать папки
             // param[1] - От куда копировать папки
             // param[2] - Куда копировать папки
-            // param[3] - Куда создават архив
+            // param[3] - Куда создавать архив
 
             DirectoryInfo drInfo = new DirectoryInfo(param[2]);
             if (drInfo.Exists)
             {
                 Directory.Delete(param[2], true); //Удаляем папку куда скопировали предыдущие файлы
+                Console.WriteLine("Удаление папки по пути"+param[2]);
             }
 
             int year = Int32.Parse(param[0]); // Год когда была создана папка
