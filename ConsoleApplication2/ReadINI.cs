@@ -12,6 +12,7 @@ namespace ConsoleApplication2
     class ReadINI
     {
         //Конструктор, принимающий путь к INI-файлу
+
         public ReadINI(string aPath)
         {
             if(File.Exists(aPath))
