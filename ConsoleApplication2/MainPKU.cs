@@ -22,8 +22,7 @@ namespace ConsoleApplication2
             Process.GetCurrentProcess().Kill();
         }
 
-        //Считываю параметры с ini файла
-
+        //Считываю параметры из Config.ini файла
         private static void configINI()
         {
             ReadINI read = new ReadINI(Environment.CurrentDirectory+@"\Config.ini");
@@ -49,35 +48,36 @@ namespace ConsoleApplication2
             mqportal.CopyFilesCatalogMQPortal(param);
         }
 
-      /*  private static void configFile()
-        {
-            //Определяем путь где находится программа
-            String pathConfigure = Environment.CurrentDirectory;
+        /*  private static void configFile()
+          {
+              //Определяем путь где находится программа
+              String pathConfigure = Environment.CurrentDirectory;
 
-            //Найдем config файл в каталоге программы
-            String[] file = Directory.GetFiles(pathConfigure, "*.txt");
+              //Найдем config файл в каталоге программы
+              String[] file = Directory.GetFiles(pathConfigure, "*.txt");
 
-            foreach (string path_nameFile in file)
-            {
-                string nameFile = Path.GetFileName(path_nameFile);
+              foreach (string path_nameFile in file)
+              {
+                  string nameFile = Path.GetFileName(path_nameFile);
 
-                if (nameFile == "config.txt")
-                {
-                    string[] lines = File.ReadAllLines(path_nameFile);
+                  if (nameFile == "config.txt")
+                  {
+                      string[] lines = File.ReadAllLines(path_nameFile);
 
-                    foreach (string line in lines)
-                    { 
-                    
-                    }
+                      foreach (string line in lines)
+                      { 
 
-                }
-                else
-                {
-                    //Пишем лог с не успешным запуском копирования
-                }
-            }
-        }*/
+                      }
 
+                  }
+                  else
+                  {
+                      //Пишем лог с не успешным запуском копирования
+                  }
+              }
+          }*/
+
+        //Считываю параметры из App.config файла
         private static void configXML()
         {
             NameValueCollection sAll;
@@ -103,17 +103,28 @@ namespace ConsoleApplication2
         
         static void Main(string[] args)
         {
-           
+
+            bool flag = true; //Флаг отвечающий за файл конфигурации true-Config.ini false-App.config
+
+
             String pathProgramm = Environment.CurrentDirectory; //Определяем путь где находится программа
             String log = pathProgramm + @"\log.txt";
             File.Delete(log);
             File.AppendAllText("log.txt", DateTime.Now+" Запуск программы\r\n");
 
 
-            //configXML();
-            configINI();
+            if (flag)
+            {
+                configINI();
+            }
+            else
+            {
+                configXML();
+            }
+            
+            
         }
 
-
     }
+
 }
