@@ -21,7 +21,7 @@ namespace ConsoleApplication2
             DirectoryInfo drInfo = new DirectoryInfo(param[2]);
             if (drInfo.Exists)
             {
-                Console.WriteLine("Удаление папки по пути" + param[2]);
+                Console.WriteLine("Удаление папки по пути " + param[2]);
                 Directory.Delete(param[2], true); //Удаляем папку куда скопировали предыдущие файлы
                 
             }
