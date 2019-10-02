@@ -21,8 +21,9 @@ namespace ConsoleApplication2
             DirectoryInfo drInfo = new DirectoryInfo(param[2]);
             if (drInfo.Exists)
             {
+                Console.WriteLine("Удаление папки по пути" + param[2]);
                 Directory.Delete(param[2], true); //Удаляем папку куда скопировали предыдущие файлы
-                Console.WriteLine("Удаление папки по пути"+param[2]);
+                
             }
 
             int year = Int32.Parse(param[0]); // Год когда была создана папка
@@ -114,6 +115,8 @@ namespace ConsoleApplication2
             {
                 File.AppendAllText("log.txt", DateTime.Now + " Нет папок для копирования из каталога: " + param[1]);
             }
+
+            Console.ReadKey();
 
         }
     }
